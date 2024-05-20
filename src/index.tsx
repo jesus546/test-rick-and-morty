@@ -1,0 +1,43 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { client } from "./ApolloClient/client";
+import { ApolloProvider } from "@apollo/client";
+import Main from "./components/main";
+import { Provider } from 'react-redux'
+import Details from "./components/details";
+import { setupStore } from './store/store'
+import Layout from "./components/layout";
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:  <Main />,
+  },
+  {
+    path: "/character/:id",
+    element:<Layout><Details /></Layout> ,
+  },
+]);
+
+root.render(
+  <React.StrictMode>
+    <Provider store={setupStore()}>
+      <ApolloProvider client={client}>
+        <div className="h-screen overflow-hidden">
+          <RouterProvider router={router} />
+        </div>
+      </ApolloProvider>
+    </Provider>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
