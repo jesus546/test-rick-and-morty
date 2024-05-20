@@ -40,7 +40,7 @@ Follow these steps to set up the project locally:
 
     ```bash
     git clone https://github.com/jesus546/test-rick-and-morty.git
-    cd rick-and-morty-api-project
+    cd test-rick-and-morty
     ```
 
 2. Install the project dependencies:
